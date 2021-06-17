@@ -1,21 +1,28 @@
 //module.exports = {
- // reactStrictMode: true,
+// reactStrictMode: true,
 //}
-
 
 const path = require("path");
 const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
+const withPlugins = require("next-compose-plugins");
 
-module.exports = withPWA({
-pwa: {
-	dest: "public",
-	runtimeCaching,
-},
-
-// This is not required to make it into a PWA, but is a nice way to clean up your imports
-webpack: (config) => {
-	config.resolve.modules.push(path.resolve("./"));
-	return config;
-},
-});
+module.exports = {
+  images: {
+    domains: ["s33242.pcdn.co"],
+  },
+  withPWA: withPWA({
+    pwa: {
+    //   disable: process.env.NODE_ENV === "development",
+    //   register: process.env.NODE_ENV === "production",
+      scope: "/",
+      dest: "public",
+      runtimeCaching,
+    },
+    // This is not required to make it into a PWA, but is a nice way to clean up your imports
+    webpack: (config) => {
+      config.resolve.modules.push(path.resolve("./"));
+      return config;
+    },
+  }),
+};

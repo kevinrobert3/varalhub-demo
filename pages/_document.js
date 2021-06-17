@@ -9,7 +9,11 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head >
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1f4c94" />
+    
+        </Head>
         <body>
           <Main />
           <NextScript />
